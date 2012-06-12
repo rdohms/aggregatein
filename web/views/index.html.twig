@@ -1,0 +1,58 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+<div class="row-fluid">
+    <div class="span12">
+        <div class="hero-unit">
+          <h1>Aggregate you talks and see their evolution!</h1>
+          <p>
+              Have you ever submitted to a conference and had to link to two or more instances of a talk
+              for people to evaluate it? Ever wanted to just submit your talk once showing conference organizers
+              a very nice summary of the aggregate of all ratings on your talk? How about a evolution graph per event?
+          </p>
+          <p>
+              Struggle no more! Just give us the list of talks you want to aggregate and we will give you an
+              awesome summary page to give the conference organizers.</p>
+        </div>
+    </div>
+</div>
+
+<div class="page-header">
+  <h1>Create your own summary page</h1>
+</div>
+<div class="row-fluid">
+    <form action="generate" method="POST" class="form-horizontal">
+      <fieldset>
+        <div class="control-group">
+          <label class="control-label" for="talk1">Primary talk ID</label>
+          <div class="controls">
+            <input type="text" class="input-xlarge" id="talk1" name="talks[]" placeholder="Paste in only the numeric ID">
+            <p class="help-block">This is the primary talk, we will take the title from this one.</p>
+          </div>
+          
+          <label class="control-label" for="talk2">Second talk ID</label>
+          <div class="controls">
+            <input type="text" class="input-xlarge" id="talk2" name="talks[]"  placeholder="Paste in only the numeric ID">
+          </div>
+            <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Generate Summary</button>
+            <button class="btn">Cancel</button>
+            </div>
+        </div>
+      </fieldset>
+    </form>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+<script type="text/javascript" charset="utf-8">
+    <label class="control-label" for="talk2">Second talk</label>
+    <div class="controls">
+      <input type="text" class="input-xlarge" id="talk2" name="talks[]">
+    </div>
+</script>
+
+{% endblock %}

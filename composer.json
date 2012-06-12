@@ -1,0 +1,31 @@
+{
+    "name": "dms/mashedin",
+    "description": "Mashes together multiples joind.in talks for an overview of the evolution of a talk",
+    "authors": [
+        {
+            "name": "Rafael Dohms",
+            "email": "rdohms@gmail.com"
+        }
+    ],
+
+    "require": {
+        "silex/silex":            "dev-master",
+        "twig/twig":              ">=1.8,<2.0-dev",
+        "microsoft/windowsazure": "*"
+    },
+
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "http://github.com/WindowsAzure/azure-sdk-for-php"
+        },
+        {
+            "type": "pear",
+            "url": "http://pear.php.net"
+        }
+    ],
+
+    "autoload": {
+        "psr-0": {"Agg": "src/"}
+    }
+}

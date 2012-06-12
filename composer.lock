@@ -1,0 +1,133 @@
+{
+    "hash": "5068b3e770b79b78e46eca8121c6149a",
+    "packages": [
+        {
+            "package": "microsoft/windowsazure",
+            "version": "dev-dev",
+            "source-reference": "733be77a89613ad0789d922dd2e74332dbbd3960"
+        },
+        {
+            "package": "pear-pear/Archive_Tar",
+            "version": "1.3.10"
+        },
+        {
+            "package": "pear-pear/Console_Getopt",
+            "version": "1.3.1"
+        },
+        {
+            "package": "pear-pear/HTTP_Request2",
+            "version": "2.1.1"
+        },
+        {
+            "package": "pear-pear/Mail_Mime",
+            "version": "1.8.5"
+        },
+        {
+            "package": "pear-pear/Mail_mimeDecode",
+            "version": "1.5.5"
+        },
+        {
+            "package": "pear-pear/Net_URL2",
+            "version": "2.0.0"
+        },
+        {
+            "package": "pear-pear/PEAR",
+            "version": "1.9.4"
+        },
+        {
+            "package": "pear-pear/PEAR_Frontend_Gtk",
+            "version": "0.4.0"
+        },
+        {
+            "package": "pear-pear/PEAR_Frontend_Web",
+            "version": "0.4"
+        },
+        {
+            "package": "pear-pear/Structures_Graph",
+            "version": "1.0.4"
+        },
+        {
+            "package": "pear-pear/XML_Util",
+            "version": "1.2.1"
+        },
+        {
+            "package": "pimple/pimple",
+            "version": "dev-master",
+            "source-reference": "694448bdd2b7d802517104bdafe1a6f2591506c8"
+        },
+        {
+            "package": "pimple/pimple",
+            "version": "dev-master",
+            "alias-pretty-version": "1.0.x-dev",
+            "alias-version": "1.0.9999999.9999999-dev"
+        },
+        {
+            "package": "silex/silex",
+            "version": "dev-master",
+            "source-reference": "4b70fb1a9b498228146ba0f363209b5829f10ca7"
+        },
+        {
+            "package": "symfony/event-dispatcher",
+            "version": "dev-master",
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
+        },
+        {
+            "package": "symfony/event-dispatcher",
+            "version": "dev-master",
+            "source-reference": "30d3f5da80c2aeab15bcdb5a7d448d15bc294b23"
+        },
+        {
+            "package": "symfony/http-foundation",
+            "version": "dev-master",
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
+        },
+        {
+            "package": "symfony/http-foundation",
+            "version": "dev-master",
+            "source-reference": "526d5d663f0b3170a91f916f912075609120e09a"
+        },
+        {
+            "package": "symfony/http-kernel",
+            "version": "dev-master",
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
+        },
+        {
+            "package": "symfony/http-kernel",
+            "version": "dev-master",
+            "source-reference": "fd5935fb6cd03dbd06930f2e3065c931694a5c92"
+        },
+        {
+            "package": "symfony/routing",
+            "version": "dev-master",
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
+        },
+        {
+            "package": "symfony/routing",
+            "version": "dev-master",
+            "source-reference": "4eef37eee0961782dfe66a23df4fc280ff1a9e44"
+        },
+        {
+            "package": "twig/twig",
+            "version": "dev-master",
+            "alias-pretty-version": "1.8.x-dev",
+            "alias-version": "1.8.9999999.9999999-dev"
+        },
+        {
+            "package": "twig/twig",
+            "version": "dev-master",
+            "source-reference": "d4511d02b45725a56c8cc49127244bca640c9d13"
+        }
+    ],
+    "packages-dev": null,
+    "aliases": [
+
+    ],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "silex/silex": 20
+    }
+}
