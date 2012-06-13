@@ -20,6 +20,16 @@ class Aggregation
     protected $talks;
 
     /**
+     * @var string
+     */
+    protected $speakerName;
+
+    /**
+     * @var string
+     */
+    protected $speakerUrl;
+
+    /**
      * @param string $slug
      */
     public function setSlug($slug)
@@ -65,5 +75,37 @@ class Aggregation
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * @param string $speakerName
+     */
+    public function setSpeakerName($speakerName)
+    {
+        $this->speakerName = $speakerName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSpeakerName()
+    {
+        return $this->speakerName;
+    }
+
+    /**
+     * @param string $speakerUrl
+     */
+    public function setSpeakerUrl($speakerUrl)
+    {
+        $this->speakerUrl = $speakerUrl;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSpeakerUrl()
+    {
+        return $this->speakerUrl;
     }
 }

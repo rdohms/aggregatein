@@ -1,0 +1,10 @@
+.rating { float: left; height:42; vertical-align:middle; margin-right: 10px }
+.rating-value { font-size: 350%; font-weight:bold; padding: 15px }
+.permalink { float: right; padding: 5px 10px; border: 1px solid #ccc; }
+    
+.center { text-align:center; }
+    
+    
+#graph { height: 350px; }
+
+footer { text-align: center; margin-top: 15px; }

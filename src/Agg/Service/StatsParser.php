@@ -47,6 +47,7 @@ class StatsParser
         $summary->setStats($stats);
         $summary->setGraphData($graphData);
 
+
         return $summary;
     }
 

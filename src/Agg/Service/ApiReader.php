@@ -18,6 +18,13 @@ class ApiReader
         return array_shift($data->events);
     }
 
+    public function getSpeakerData($input)
+    {
+        $url = $this->extractUrl("http://api.joind.in/v2.1/users/{id}", $input);
+        $data = $this->getData($url);
+        return array_shift($data->users);
+    }
+
     protected function getData($url)
     {
         $cacheKey = md5($url);

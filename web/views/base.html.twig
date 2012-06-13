@@ -9,7 +9,8 @@
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/site.css" rel="stylesheet">
     <style>
         body {
             padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
@@ -35,9 +36,8 @@
             <a class="brand" href="#">Aggregate.in</a>
             <div class="nav-collapse">
                 <ul class="nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="/">Aggregate a talk!</a></li>
+                    <li><a href="{{ path('list') }}">List of aggregations</a></li>
                 </ul>
             </div>
         </div>
@@ -48,10 +48,16 @@
     {% block content %}
 
     {% endblock %}
+    
+    <footer>
+        Developed by <a href="http://doh.ms">Rafael Dohms</a> using the <a href="http://joind.in">Joind.in API</a>, <a href="#">Silex</a> and <a href="https://www.windowsazure.com">Windows Azure</a>. Fork it on <a href="#">github</a>.
+    </footer>
 </div> 
 
-<script src="bootstrap/js/bootstrap.js"></script>
+{% block javascripts %}
+<script src="/bootstrap/js/bootstrap.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
+{% endblock %}
 
 </body>
 </html>

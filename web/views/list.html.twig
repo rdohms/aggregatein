@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1>Aggregations</h1>
+</div>
+<div class="row-fluid">
+    <div class="span12">
+        <ul class="">
+            {% for agg in aggregations %}
+            <li>
+                <a href="{{ path('talk_show', {slug: agg.slug}) }}">{{ agg.title }}</a> - <span>By <a href="{{ agg.speakerUrl|default('#') }}">{{ agg.speakerName|default('Anonymous') }}</a></span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+
+{% endblock %}

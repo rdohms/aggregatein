@@ -1,16 +1,19 @@
 <?php
 use Symfony\Component\HttpFoundation\Request;
-
 require_once __DIR__.'/../vendor/autoload.php';
 
-$app = new Silex\Application();
-$app['debug'] = true;
-$app['api']   = new \Agg\Service\ApiReader();
-$app['parser'] = new Agg\Service\StatsParser($app['api']);
+$config = array();
+$config['account'] = 'aggregate';
+$config['key']     = '0UYTEmZxL2e5yp1yiLy1Vhcs38z6KjDk+oYse22XAS7uali4grJ5dB0AuHNA3N923QtOVa/X3cUtEWdlpHABqg==';
 
-$app->register(new Silex\Provider\TwigServiceProvider(), array(
-    'twig.path' => __DIR__.'/views',
-));
+$app = new Silex\Application();
+$app['debug']   = true;
+$app['api']     = new Agg\Service\ApiReader();
+$app['parser']  = new Agg\Service\StatsParser($app['api']);
+$app['storage'] = new Agg\Service\Storage($config);
+
+$app->register(new Silex\Provider\TwigServiceProvider(), array('twig.path' => __DIR__.'/views'));
+$app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 
 $app->get('/', function (Silex\Application $app) {
 
@@ -18,41 +21,53 @@ $app->get('/', function (Silex\Application $app) {
 
 });
 
-$app->get('/select-title/{id}', function (Silex\Application $app, $id) {
-
-});
-
 $app->post('/generate', function (Silex\Application $app, Request $request) {
 
-    $talkUrlBase = "http://api.joind.in/v2.1/talks/";
     $talks = $request->get('talks');
 
     //Get Primary Talk data
-    $primaryTalkId = $talks[0];
-    $json = file_get_contents($talkUrlBase . $primaryTalkId);
+    $talkData = $app['api']->getTalkData($talks[0]);
 
-    $primaryTalkData = json_decode($json);
+    $speakerData = $app['api']->getSpeakerData($talkData->speakers[0]->speaker_uri);
+    var_dump($talkData->speakers, $speakerData);
 
+    //New Aggregation
     $agg = new \Agg\Entity\Aggregation();
-    $agg->setTitle($primaryTalkData->talk_title);
+    $agg->setTitle($talkData->talk_title);
     $agg->setTalks($talks);
+    $agg->setSpeakerName($speakerData->full_name);
+    $agg->setSpeakerUrl($speakerData->website_uri);
 
     //Persist
+    $app['storage']->storeAggregation($agg);
+
+    //Redirect
+    return \Symfony\Component\HttpFoundation\RedirectResponse::create("/talk/".$agg->getSlug());
 });
 
 $app->get('/talk/{slug}', function (Silex\Application $app, $slug) {
 
-    $talks = array('6681', '6437');
-    $summary = $app['parser']->parseSummaryStats($talks);
 
-    var_dump($summary, $summary->getStats()->getAverageRating(), $summary->getStats()->getTotalCount());
-    //Retrieve summary by slug
+    $aggregation = $app['storage']->retrieveAggregationBySlug($slug);
 
-    //Get/Parse Data
+    $summary = $app['parser']->parseSummaryStats($aggregation->getTalks());
 
     //Render
+    return $app['twig']->render('summary.html.twig', array(
+        'summary'     => $summary,
+        'aggregation' => $aggregation
+    ));
+})->bind('talk_show');
 
-});
+$app->get('/list', function (Silex\Application $app) {
 
+    $aggregations = $app['storage']->retrieveAggregationList();
+
+    //Render
+    return $app['twig']->render('list.html.twig', array(
+        'aggregations' => $aggregations
+    ));
+
+})->bind('list');
 
 $app->run();
