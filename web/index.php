@@ -28,8 +28,11 @@ $app->post('/generate', function (Silex\Application $app, Request $request) {
     //Get Primary Talk data
     $talkData = $app['api']->getTalkData($talks[0]);
 
+    if ($talkData === null) throw new UnexpectedValueException("Invalid talk");
+
     $speakerData = $app['api']->getSpeakerData($talkData->speakers[0]->speaker_uri);
-    var_dump($talkData->speakers, $speakerData);
+
+    if ($speakerData === null) throw new UnexpectedValueException("Invalid speaker");
 
     //New Aggregation
     $agg = new \Agg\Entity\Aggregation();

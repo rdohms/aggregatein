@@ -26,12 +26,17 @@ class StatsParser
             $eventData = $this->api->getEventData($talkData->event_uri);
 
             $talk = new \Agg\Entity\Talk();
+
             $talk->setTitle($talkData->talk_title);
             $talk->setUrl($talkData->website_uri);
             $talk->setRating($talkData->average_rating);
             $talk->setCommentCounts($talkData->comment_count);
-            $talk->setEventName($eventData->name);
-            $talk->setEventUrl($eventData->website_uri);
+
+            if ($eventData != null) {
+                $talk->setEventName($eventData->name);
+                $talk->setEventUrl($eventData->website_uri);
+            }
+
             $talks[] = $talk;
 
             $stats->addRating($talkData->average_rating);

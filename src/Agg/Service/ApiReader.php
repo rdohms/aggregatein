@@ -8,6 +8,9 @@ class ApiReader
     {
         $url = $this->extractUrl("http://api.joind.in/v2.1/talks/{id}", $input);
         $data = $this->getData($url);
+
+        if (!$data) return null;
+
         return array_shift($data->talks);
     }
 
@@ -15,6 +18,9 @@ class ApiReader
     {
         $url = $this->extractUrl("http://api.joind.in/v2.1/events/{id}", $input);
         $data = $this->getData($url);
+
+        if (!$data) return null;
+
         return array_shift($data->events);
     }
 
@@ -22,6 +28,9 @@ class ApiReader
     {
         $url = $this->extractUrl("http://api.joind.in/v2.1/users/{id}", $input);
         $data = $this->getData($url);
+
+        if (!$data) return null;
+
         return array_shift($data->users);
     }
 

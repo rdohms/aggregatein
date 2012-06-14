@@ -10,14 +10,14 @@
 <div class="row-fluid">
     <div class="span10">
         <h3>Events</h3>
-        <ul class="unstyled">
+        <ul class="unstyled talk-list">
             {% for talk in summary.talks %}
             <li>
                 <div class="rating">
                     <img src="/img/rating-{{ talk.rating }}.gif" alt="">
                 </div>
-                <a href="{{ talk.eventUrl }}">{{ talk.eventName }}</a><br>
-                "{{ talk.title }}"
+                <a href="{{ talk.eventUrl }}">{{ talk.eventName|default("Event without name") }}</a><br>
+                <em>"{{ talk.title }}"</em>
             </li>
             {% endfor %}
         </ul>
