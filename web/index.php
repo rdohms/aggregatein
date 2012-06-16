@@ -1,4 +1,7 @@
 <?php
+set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__.'/../vendor/pear-pear/');
+ini_set('error_log', __DIR__. '/../php_error.log');
+
 use Symfony\Component\HttpFoundation\Request;
 require_once __DIR__.'/../vendor/autoload.php';
 
