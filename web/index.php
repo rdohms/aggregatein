@@ -1,4 +1,5 @@
 <?php
+//Setting PEAR libs in include_path to remove include_once errors in PEAR dependencies
 set_include_path(get_include_path()
     . PATH_SEPARATOR . __DIR__.'/../vendor/pear-pear/Archive_Tar'
     . PATH_SEPARATOR . __DIR__.'/../vendor/pear-pear/Console_Getopt'
@@ -12,11 +13,14 @@ set_include_path(get_include_path()
     . PATH_SEPARATOR . __DIR__.'/../vendor/pear-pear/Structures_Graph'
     . PATH_SEPARATOR . __DIR__.'/../vendor/pear-pear/XML_Util'
 );
+
+//Making Error log in Azure easier to get to.
 ini_set('error_log', __DIR__. '/../php_error.log');
 
 use Symfony\Component\HttpFoundation\Request;
 require_once __DIR__.'/../vendor/autoload.php';
 
+//Storage config comes from SERVER variables
 $config = array();
 $config['account'] = $_SERVER["azure_storage_account"];
 $config['key']     = $_SERVER["azure_storage_key"];
@@ -30,12 +34,14 @@ $app['storage'] = new Agg\Service\Storage($config);
 $app->register(new Silex\Provider\TwigServiceProvider(), array('twig.path' => __DIR__.'/views'));
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 
+//Homepage
 $app->get('/', function (Silex\Application $app) {
 
     return $app['twig']->render('index.html.twig');
 
 });
 
+//Summary Generation
 $app->post('/generate', function (Silex\Application $app, Request $request) {
 
     $talks = $request->get('talks');
@@ -63,6 +69,7 @@ $app->post('/generate', function (Silex\Application $app, Request $request) {
     return \Symfony\Component\HttpFoundation\RedirectResponse::create("/talk/".$agg->getSlug());
 });
 
+//Talk page
 $app->get('/talk/{slug}', function (Silex\Application $app, $slug) {
 
 
@@ -77,6 +84,7 @@ $app->get('/talk/{slug}', function (Silex\Application $app, $slug) {
     ));
 })->bind('talk_show');
 
+//List of aggregations
 $app->get('/list', function (Silex\Application $app) {
 
     $aggregations = $app['storage']->retrieveAggregationList();
