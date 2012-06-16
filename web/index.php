@@ -1,5 +1,17 @@
 <?php
-set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__.'/../vendor/pear-pear/');
+set_include_path(get_include_path()
+    . PATH_SEPARATOR . __DIR__.'/../vendor/pear-pear/Archive_Tar'
+    . PATH_SEPARATOR . __DIR__.'/../vendor/pear-pear/Console_Getopt'
+    . PATH_SEPARATOR . __DIR__.'/../vendor/pear-pear/HTTP_Request2'
+    . PATH_SEPARATOR . __DIR__.'/../vendor/pear-pear/Mail_Mime'
+    . PATH_SEPARATOR . __DIR__.'/../vendor/pear-pear/Mail_mimeDecode'
+    . PATH_SEPARATOR . __DIR__.'/../vendor/pear-pear/Net_URL2'
+    . PATH_SEPARATOR . __DIR__.'/../vendor/pear-pear/PEAR/PEAR-1.9.4'
+    . PATH_SEPARATOR . __DIR__.'/../vendor/pear-pear/PEAR_Frontend_Gtk'
+    . PATH_SEPARATOR . __DIR__.'/../vendor/pear-pear/PEAR_Frontend_Web'
+    . PATH_SEPARATOR . __DIR__.'/../vendor/pear-pear/Structures_Graph'
+    . PATH_SEPARATOR . __DIR__.'/../vendor/pear-pear/XML_Util'
+);
 ini_set('error_log', __DIR__. '/../php_error.log');
 
 use Symfony\Component\HttpFoundation\Request;
