@@ -18,8 +18,8 @@ use Symfony\Component\HttpFoundation\Request;
 require_once __DIR__.'/../vendor/autoload.php';
 
 $config = array();
-$config['account'] = 'aggregate';
-$config['key']     = '0UYTEmZxL2e5yp1yiLy1Vhcs38z6KjDk+oYse22XAS7uali4grJ5dB0AuHNA3N923QtOVa/X3cUtEWdlpHABqg==';
+$config['account'] = $_SERVER["azure_storage_account"];
+$config['key']     = $_SERVER["azure_storage_key"];
 
 $app = new Silex\Application();
 $app['debug']   = true;
