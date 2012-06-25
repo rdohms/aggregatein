@@ -1,26 +1,43 @@
 {% extends "base.html.twig" %}
 
 {% block content %}
-
-<div class="page-header">
-    <span class="permalink"><a href="{{ url('talk_show', { 'slug': aggregation.slug }) }}">{{ url('talk_show', { 'slug': aggregation.slug }) }}</a></span>    
-    <h1>{{ aggregation.title }}</h1>
-    <span>By <a href="{{ aggregation.speakerUrl|default('#') }}">{{ aggregation.speakerName|default('Anonymous') }}</a></span>
-</div>
 <div class="row-fluid">
     <div class="span10">
-        <h3>Events</h3>
-        <ul class="unstyled talk-list">
-            {% for talk in summary.talks %}
-            <li>
-                <div class="rating">
-                    <img src="/img/rating-{{ talk.rating }}.gif" alt="">
+        
+        <div class="row-fluid">
+            <div class="span12">
+                
+                <div class="page-header talk-header">
+                    <span class="permalink"><a href="{{ url('talk_show', { 'slug': aggregation.slug }) }}"><i class="icon-link"></i> {{ url('talk_show', { 'slug': aggregation.slug }) }}</a></span>    
+                    <h1><i class="icon-bullhorn icon-small"></i> {{ aggregation.title }}</h1>
+                    <span><a href="{{ aggregation.speakerUrl|default('#') }}"><i class="icon-user"></i> {{ aggregation.speakerName|default('Anonymous') }}</a></span>
                 </div>
-                <a href="{{ talk.eventUrl }}">{{ talk.eventName|default("Event without name") }}</a><br>
-                <em>"{{ talk.title }}"</em>
-            </li>
-            {% endfor %}
-        </ul>
+                
+            </div>
+        </div>
+        
+        <div class="row-fluid">
+            <div class="span12">
+                <h3>Events <i class="icon-calendar"></i></h3>
+                <ul class="unstyled talk-list">
+                    {% for talk in summary.talks %}
+                    <li>
+                        <div class="row-fluid">
+                            <div class="span2 rating">
+                                <img src="/img/rating-{{ talk.rating }}.gif" alt="">
+                                <span class="cmt-count">{{talk.commentCounts}} ratings</span>
+                            </div>
+                            <div class="span10">
+                                <a href="{{ talk.eventUrl }}" class="event-name"><h4>{{ talk.eventName|default("Event without name") }}</h4></a>
+                                <em>"{{ talk.title }}"</em><a href="#"><i class="icon-external-link"></i></a>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
     </div>
     <div class="span2">
         <div class="well center">
@@ -32,7 +49,9 @@
         </div>
     </div>
 </div>
+
 <div class="row-fluid">
+    <h3>Talk Evolution <i class="icon-bar-chart"></i></h3>
     <div id="graph" class="span12"></div>
 </div>
 
@@ -54,15 +73,18 @@ $(function () {
      
             },
             title: {
-                text: 'Evolution of Ratings',
-                x: -20 //center
+                text: '',
             },
             xAxis: {
                 categories: {{ summary.graphDates|json_encode|raw }}
             },
             yAxis: {
                 title: {
-    				text: 'Rating'
+                    margin: 0,
+    				text: null,
+    				style: {
+                    	color: '#85A000'
+                    }
     			},
     			min: 0,
     			max: 5.5,
@@ -70,15 +92,30 @@ $(function () {
                     value: 0,
                     width: 1,
                     color: '#808080'
-                }]
+                }],
+                labels: {
+                    style: {
+                    	color: '#85A000'
+                    }
+                },
             },
 
             legend: {
                 enabled: false
             },
             series: [{
+                name: 'Ratings',
                 data: {{ summary.graphRatings|json_encode }}
-            }]
+            }],
+            colors: [
+            	'#85A000',
+            ],
+            labels: {
+                style: {
+                	color: '#85A000'
+                }
+            },
+            credits: { enabled: false }
         });
     });
     

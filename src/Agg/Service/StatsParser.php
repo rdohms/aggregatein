@@ -25,6 +25,8 @@ class StatsParser
             $talkData  = $this->api->getTalkData($talkId);
             $eventData = $this->api->getEventData($talkData->event_uri);
 
+            $date = new \DateTime($talkData->start_date);
+
             $talk = new \Agg\Entity\Talk();
 
             $talk->setTitle($talkData->talk_title);
@@ -37,16 +39,16 @@ class StatsParser
                 $talk->setEventUrl($eventData->website_uri);
             }
 
-            $talks[] = $talk;
+            $talks[$date->format('U')] = $talk;
 
             $stats->addRating($talkData->average_rating);
             $stats->addCount($talkData->comment_count);
 
-            $date = new \DateTime($talkData->start_date);
             $graphData[$date->format('U')] = $talkData->average_rating;
         }
 
         ksort($graphData);
+        ksort($talks);
 
         $summary->setTalks($talks);
         $summary->setStats($stats);

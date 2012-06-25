@@ -1,10 +1,10 @@
-.rating { float: left; height:42; vertical-align:middle; margin-right: 10px }
+.talk-header h1 { padding-bottom: 10px }
 .rating-value { font-size: 350%; font-weight:bold; padding: 15px }
 .permalink { float: right; padding: 5px 10px; border: 1px solid #ccc; }
-
+.cmt-count { display: block; font-size: 75% }
 .center { text-align:center; }
 
-.talk-list li { clear: both; }
+.talk-list li { margin-bottom: 15px; }
 #graph { height: 350px; }
 
 footer { text-align: center; margin-top: 15px; }
@@ -14,3 +14,7 @@ h1, h2, h3, h4, .rating-value { font-family: 'Arvo', serif; color: #85A000 }
 a { color: #FF9200; }
 
 .hero-unit h1 { color: #85A000; padding-bottom: 15px }
+
+.event-name, .event-name h4 { color: #FF9200 }
+
+.icon-small{ font-size: 50% }

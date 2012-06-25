@@ -27,7 +27,8 @@ $config['key']     = $_SERVER["azure_storage_key"];
 
 $app = new Silex\Application();
 $app['debug']   = true;
-$app['api']     = new Agg\Service\ApiReader();
+$app['cache']   = \Agg\Service\CacheFactory::getCache();
+$app['api']     = new Agg\Service\ApiReader($app['cache']);
 $app['parser']  = new Agg\Service\StatsParser($app['api']);
 $app['storage'] = new Agg\Service\Storage($config);
 
